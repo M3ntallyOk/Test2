@@ -1,3 +1,6 @@
+# Enable TLSv1.2 for compatibility with older clients
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
+
 $urls = @(                                                                                                 
       "https://segaretro.org/images/b/b4/Yakuza_nishikiyama_bust.jpg",
       "https://github.com/M3ntallyOk/Test2/raw/main/Pussy.mp3"
