@@ -3,7 +3,7 @@
 
 $urls = @(                                                                                                 
       "https://segaretro.org/images/b/b4/Yakuza_nishikiyama_bust.jpg",
-      "https://github.com/M3ntallyOk/Test2/raw/main/Pussy.mp3"
+      "https://github.com/M3ntallyOk/Test2/raw/main/Pussy.wav"
   )
 
 $webClient = New-Object System.Net.WebClient
