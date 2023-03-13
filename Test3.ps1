@@ -21,3 +21,4 @@ Start-Sleep -Seconds 120  # Wait for 2 minutes
 Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -Value $wallpaper_path
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Remove-Item $path #remove the files
+exit
