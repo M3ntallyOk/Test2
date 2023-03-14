@@ -2,7 +2,7 @@
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
 $urls = @(                                                                                                 
-      "https://segaretro.org/images/b/b4/Yakuza_nishikiyama_bust.jpg",
+      "https://raw.githubusercontent.com/M3ntallyOk/fasjopasfhb/main/Yakuza_nishikiyama_bust.jpg",
       "https://github.com/M3ntallyOk/Test2/raw/main/Pussy.wav"
   )
 
