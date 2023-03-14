@@ -2,7 +2,7 @@
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
     <Date>2000-11-10T20:58:46.6939164</Date>
-    <Author> </Author>
+    <Author>Nishiyama</Author>
     <URI>\TestDuckie</URI>
   </RegistrationInfo>
   <Triggers>
