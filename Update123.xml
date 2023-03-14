@@ -16,7 +16,7 @@
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <UserId></UserId>
+      <UserId>5834a8e6-4a1c-4c7d-9d2c-87f03141b50c</UserId>
       <LogonType>InteractiveToken</LogonType>
       <RunLevel>HighestAvailable</RunLevel>
     </Principal>
