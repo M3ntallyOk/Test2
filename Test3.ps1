@@ -30,7 +30,7 @@ $null = Add-Type -MemberDefinition $signature -Name WinAPI -Namespace Wallpaper
 [Wallpaper.WinAPI]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, [IntPtr]::Zero, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
 
 Start-Process powershell.exe -ArgumentList "-c (New-Object Media.SoundPlayer '$audio_path').PlaySync();" -WindowStyle Hidden
-Start-Sleep -Seconds 120  # Wait for 2 minutes
+Start-Sleep -Seconds 104  # Wait for 2 minutes
 
 Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value $currentWallpaper
 [Wallpaper.WinAPI]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, [IntPtr]::Zero, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
