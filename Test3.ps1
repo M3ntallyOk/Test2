@@ -15,13 +15,24 @@ foreach ($i in 0..($urls.Count - 1)) {
     $webClient.DownloadFile($url, $path)
 }
 
-$wallpaper_path = Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Wallpaper
+$currentWallpaper = Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper | Select-Object -ExpandProperty Wallpaper
 $audio_path = "$env:SystemRoot\Temp\$($urls[1] | Split-Path -Leaf)"
-Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -Value '$env:SystemRoot\Temp\Yakuza_nishikiyama_bust.jpg'
-rundll32.exe user32.dll, UpdatePerUserSystemParameters
+Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value "C:\Windows\Temp\Yakuza_nishikiyama_bust.jpg"
+
+$signature = @"
+[DllImport("user32.dll", SetLastError = true)]
+public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
+"@
+$SPI_SETDESKWALLPAPER = 20
+$SPIF_UPDATEINIFILE = 1
+$SPIF_SENDWININICHANGE = 2
+$null = Add-Type -MemberDefinition $signature -Name WinAPI -Namespace Wallpaper
+[Wallpaper.WinAPI]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, [IntPtr]::Zero, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
+
 Start-Process powershell.exe -ArgumentList "-c (New-Object Media.SoundPlayer '$audio_path').PlaySync();" -WindowStyle Hidden
 Start-Sleep -Seconds 120  # Wait for 2 minutes
-Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name Wallpaper -Value $wallpaper_path
-rundll32.exe user32.dll, UpdatePerUserSystemParameters
-Remove-Item $path #remove the files
+
+Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name Wallpaper -Value $currentWallpaper
+[Wallpaper.WinAPI]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, [IntPtr]::Zero, $SPIF_UPDATEINIFILE -bor $SPIF_SENDWININICHANGE)
+Remove-Item "$env:SystemRoot\Temp\Yakuza_nishikiyama_bust.jpg", "$env:SystemRoot\Temp\Pussy.wav" -Force #remove the files
 exit
